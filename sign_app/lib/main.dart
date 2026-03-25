@@ -4,7 +4,7 @@ void main() {
   runApp(const MyApp());
 }
 
-// Great-Grandparent
+//  Great-Grandparent
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
   }
 }
 
-// Parent Page
+//  Parent Page
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});
 
@@ -109,9 +109,33 @@ class _SignupPageState extends State<SignupPage> {
                     return 'Password must be at least 6 characters';
                   }
                   return null;
+
+                  final TextEditingController _confirmPasswordController = TextEditingController();
                 },
               ),
               const SizedBox(height: 24),
+
+              //  Sign Up Button
+              ElevatedButton(
+                onPressed: () {
+                  if (_formKey.currentState!.validate()) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Welcome! Account created successfully.'),
+                        backgroundColor: Colors.green,
+                      ),
+                    );
+                  }
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.purple,
+                  padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 12),
+                ),
+                child: const Text(
+                  'Sign Up',
+                  style: TextStyle(fontSize: 18, color: Colors.white),
+                ),
+              ),
             ],
           ),
         ),
